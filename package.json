@@ -1,7 +1,6 @@
 {
   "name": "bg",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/app.js"
@@ -10,8 +9,10 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "knex": "^3.0.1",
     "nodemon": "^3.0.1",
     "pg": "^8.11.3",
     "yarn": "^1.22.21"
@@ -24,5 +25,7 @@
   },
   "devDependencies": {
     "prettier": "^3.1.0"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }

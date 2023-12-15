@@ -1,6 +1,6 @@
-const pool = require('../database/conexao')
+const Usuario = require('../../repositories/usuario/index')
+const usuarioInstacia = new Usuario()
 const jwt = require('jsonwebtoken')
-const senhaJwt = require('../controller/senhaJwt')
 
 const exibiDados = async (req, res) => {
   const { authorization } = req.headers
@@ -8,15 +8,13 @@ const exibiDados = async (req, res) => {
   if (!authorization) {
     return res.status(401).json({ messagem: 'Não autorizado' })
   }
-
   const token = authorization.split(' ')[1]
-
   try {
-    const tokenUsuario = jwt.verify(token, senhaJwt)
-    const resultado = await pool.query('select * from usuario')
-    res.status(200).json(resultado.rows)
+    const tokenUsuario = jwt.verify(token, 'senhaSecreta')
+    const resultado = await usuarioInstacia.exibir()
+    res.status(200).json(resultado)
   } catch (error) {
-    res.status(501).json(error)
+    res.status(501).json({ mensagem: error.message })
   }
 }
 

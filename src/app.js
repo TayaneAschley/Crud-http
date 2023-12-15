@@ -1,11 +1,14 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 
-const rotas = require('./router/router')
+
+const rotasUsuario = require('./router/usuario/rotasUsuario')
+const port = process.env.PORT || 3000
 
 app.use(express.json())
-app.use(rotas)
+app.use(rotasUsuario)
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('Servidor aberto na porta 3000')
 })
